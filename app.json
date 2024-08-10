@@ -7,19 +7,22 @@
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
+    "platforms": ["ios", "android", "web"],
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.prueba"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.prueba"
     },
     "web": {
       "bundler": "metro",
@@ -27,10 +30,21 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "react-native-auth0",
+        {
+          "domain": "dev-1dw48zoypo63ji15.us.auth0.com",
+          "clientId": "hVrPKLIB3tIouhyv7XWkCy2rZkCl9TCR"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "auth0Domain": "dev-1dw48zoypo63ji15.us.auth0.com",
+      "auth0ClientId": "hVrPKLIB3tIouhyv7XWkCy2rZkCl9TCR"
     }
   }
 }
