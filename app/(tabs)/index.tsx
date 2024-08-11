@@ -5,7 +5,7 @@ import { useAuth0, Auth0Provider } from 'react-native-auth0';
 
 const auth0Domain = "dev-1dw48zoypo63ji15.us.auth0.com";
 const auth0ClientId = "hVrPKLIB3tIouhyv7XWkCy2rZkCl9TCR";
-const redirectUri = "com.prueba://callback"; // Configuración manual de redirectUri
+const redirectUri = "exp://192.168.1.7:8081"; // Configuración manual de redirectUri
 
 const Home = () => {
 
@@ -41,8 +41,6 @@ const Home = () => {
       console.log('Log out cancelled');
     }
   };
-
-  console.log("Redirect URI:", redirectUri);
 
   // Renders the user interface
   return (
