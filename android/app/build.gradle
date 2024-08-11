@@ -8,6 +8,7 @@ def projectRoot = rootDir.getAbsoluteFile().getParentFile().getAbsolutePath()
  * This is the configuration block to customize your React Native Android app.
  * By default you don't need to apply any configuration, just uncomment the lines you need.
  */
+
 react {
     entryFile = file(["node", "-e", "require('expo/scripts/resolveAppEntry')", projectRoot, "android", "absolute"].execute(null, rootDir).text.trim())
     reactNativeDir = new File(["node", "--print", "require.resolve('react-native/package.json')"].execute(null, rootDir).text.trim()).getParentFile().getAbsoluteFile()
@@ -85,9 +86,9 @@ android {
 
     namespace 'com.prueba'
     defaultConfig {
-// @generated begin react-native-auth0-manifest-placeholder - expo prebuild (DO NOT MODIFY) sync-c98d61658d297d03e1aecfa43bed67d446d3f502
-manifestPlaceholders = [auth0Domain: "dev-1dw48zoypo63ji15.us.auth0.com", auth0Scheme: "com.prueba.auth0"]
-// @generated end react-native-auth0-manifest-placeholder
+        // @generated begin react-native-auth0-manifest-placeholder - expo prebuild (DO NOT MODIFY) sync-c98d61658d297d03e1aecfa43bed67d446d3f502
+        manifestPlaceholders = [auth0Domain: "dev-1dw48zoypo63ji15.us.auth0.com", auth0Scheme: "com.prueba.auth0"]
+        // @generated end react-native-auth0-manifest-placeholder
         applicationId 'com.prueba'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion

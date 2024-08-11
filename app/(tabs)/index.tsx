@@ -5,15 +5,14 @@ import { useAuth0, Auth0Provider } from 'react-native-auth0';
 
 const auth0Domain = "dev-1dw48zoypo63ji15.us.auth0.com";
 const auth0ClientId = "hVrPKLIB3tIouhyv7XWkCy2rZkCl9TCR";
+const redirectUri = "com.prueba://callback"; // Configuración manual de redirectUri
 
-// Main component for the home screen
 const Home = () => {
+
   const [request, response, promptAsync] = AuthSession.useAuthRequest(
     {
       clientId: auth0ClientId,
-      redirectUri: AuthSession.makeRedirectUri({
-        scheme: "myapp",
-      }),
+      redirectUri: redirectUri, // Utilizando la URI fija
       scopes: ["openid", "profile", "email"],
       extraParams: {
         audience: `https://${auth0Domain}/userinfo`,
@@ -23,13 +22,12 @@ const Home = () => {
   );
 
   const { clearSession, user, error, isLoading } = useAuth0();
-  const [authCode, setAuthCode] = useState(null);
+  const [authCode, setAuthCode] = useState<string | null>(null);
 
   useEffect(() => {
     if (response?.type === "success") {
       const { code } = response.params;
       setAuthCode(code);
-      // Here you can handle the access token and perform authentication
     }
   }, [response]);
 
@@ -44,6 +42,8 @@ const Home = () => {
     }
   };
 
+  console.log("Redirect URI:", redirectUri);
+
   // Renders the user interface
   return (
     <View style={styles.container}>
@@ -52,6 +52,7 @@ const Home = () => {
         disabled={!request}
         title="Login with Auth0"
         onPress={() => {
+          console.log('Generated redirectUri:', redirectUri);
           promptAsync();
         }}
       />
@@ -67,7 +68,6 @@ const Home = () => {
   );
 };
 
-// Styles for the component
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// Main application component
 const App = () => {
   return (
     <Auth0Provider domain={auth0Domain} clientId={auth0ClientId}>
